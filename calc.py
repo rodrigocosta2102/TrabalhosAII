@@ -18,6 +18,7 @@ def dividir(x, y):
 
 # Função principal da calculadora
 def calculadora():
+    historico = []  # Lista para armazenar o histórico das últimas 5 operações com tuplos
     while True:
         print("\nEscolha a operação:")
         print("1. Soma")
@@ -43,9 +44,30 @@ def calculadora():
         elif escolha == '4':
             resultado = dividir(num1, num2)
             operacao = "divisão"
+        elif escolha == '5':
+            if not historico:
+                print("Nenhuma operação realizada ainda.")
+            else:
+                print("\nHistórico das Últimas 5 Operações:")
+                for operacao in historico:
+                    # Cada operação é um tuplo no formato (operação, num1, num2, resultado)
+                    op, num1, num2, resultado = operacao
+                    print(f"{op.capitalize()}: {num1} e {num2} = {resultado}")
+            continue
         elif escolha == '6':
             print("Encerrando a calculadora...")
             break
         else:
             print("Escolha inválida")
         continue
+   
+    # Exibir o resultado e adicionar a operação ao histórico como um tuplo
+    print(f"Resultado: {operacao.capitalize()} entre {num1} e {num2} = {resultado}")
+    historico.append((operacao, num1, num2, resultado))  # Adiciona a operação como um tuplo
+
+    # Limita o histórico a 5 operações
+    if len(historico) > 5:
+        historico.pop(0)  # Remove o item mais antigo do histórico
+
+# Executar a calculadora
+calculadora()
