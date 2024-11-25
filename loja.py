@@ -32,3 +32,13 @@ def verificar_estoque(produto):
         return f"A quantidade em estoque de {produto} é: {quantidade}"
     else:
         return f"O produto '{produto}' não está disponível em estoque"
+
+#Função principal
+def func_princ():
+    print_produtos()
+    add_produto("produto5", "Esferográfica Tinta Azul", 1.99, 83)
+    update_produto4("produto4", 45.99)
+    print_produtos()
+
+#Executar a função principal
+func_princ()
